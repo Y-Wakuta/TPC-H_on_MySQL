@@ -1,0 +1,31 @@
+diff --git a/install.sh b/install.sh
+index 9d81955..bb0b6f5 100755
+--- a/install.sh
++++ b/install.sh
+@@ -22,7 +22,8 @@ esac
+
+ BASE_DIR=$PWD
+ DATABASE=$1
+-TPCH_PROG=tpch_2_17_0
++TPCH_PROG=tpc-h-tool
++TPCH_VER=2.18.0_rc2
+ : ${PREFIX:=$HOME}
+ PREFIX=$(readlink -f $PREFIX)
+ BIN_DIR=$PREFIX/bin
+@@ -40,14 +41,11 @@ ensure_directories() {
+
+ download_and_extract_dbgen() {
+     pushd $SRC_DIR
+-    if [ ! -f $TPCH_PROG.zip ]; then
+-        echo "Download $TPCH_PROG.zip ..."
+-        curl -LO http://www.tpc.org/tpch/spec/$TPCH_PROG.zip
+-    fi
+     if [ ! -d $TPCH_PROG ]; then
+         echo "Extract $TPCH_PROG.zip ..."
+-        unzip $TPCH_PROG
++        unzip $TPCH_PROG.zip
+         rm -rf __MACOSX
++       mv $TPCH_VER $SRC_DIR/$TPCH_PROG
+     fi
+     popd
+ }
