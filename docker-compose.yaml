@@ -6,9 +6,7 @@ services:
     build: .
     environment:
       MYSQL_ROOT_PASSWORD: root
-      MYSQL_DATABASE: sf1
-      #volumes:
-      #- "./setup_db.sh:/docker-entrypoint-initdb.d"
+      MYSQL_DATABASE: tpch
     ports:
       - 3306:3306
       
