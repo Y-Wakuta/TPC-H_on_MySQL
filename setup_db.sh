@@ -35,9 +35,6 @@ time setup_dbgen
 mysql -uroot -proot -D tpch -e "SET GLOBAL innodb_flush_log_at_trx_commit = 1;"
 mysql -uroot -proot -D tpch -e "SET GLOBAL FOREIGN_KEY_CHECKS=1;"
 
-# copy value from lineitem.l_orderkey to lineitem.l_linenumber
-mysql -uroot -proot -D tpch -e "SET @rank:=10;UPDATE lineitem SET l_linenumber=@rank:=@rank+1;"
-
 for tbl_file in *.tbl; do mysql -uroot -proot -D tpch -e "SELECT COUNT(*) FROM $(basename $tbl_file .tbl);"; done
 
 echo "validate joins"
