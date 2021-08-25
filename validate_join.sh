@@ -5,7 +5,7 @@ echo "supplier<-> parsupp"
 mysql -uroot -proot -D tpch -e "SELECT COUNT(1) FROM supplier, partsupp WHERE s_suppkey=ps_suppkey;"
 
 echo "lineitem<-> parsupp"
-mysql -uroot -proot -D tpch -e "SELECT COUNT(1) FROM lineitem, partsupp WHERE l_partkey=ps_partkey;"
+mysql -uroot -proot -D tpch -e "SELECT COUNT(1) FROM lineitem, partsupp WHERE l_partkey=ps_partkey AND l_suppkey = ps_suppkey;"
 
 echo "lineitem<-> orders"
 mysql -uroot -proot -D tpch -e "SELECT COUNT(1) FROM lineitem, orders WHERE l_orderkey=o_orderkey;"

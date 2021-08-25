@@ -21,6 +21,11 @@ function setup_dbgen(){
     echo "creating index"
     mysql -uroot -proot -D tpch < dss.ri
 
+    # duplicate lineitem table
+    mysql -uroot -proot -D tpch -e "CREATE TABLE lineitem_dup ENGINE=MEMORY SELECT * FROM lineitem;"
+    mysql -uroot -proot -D tpch -e "CREATE TABLE orders_dup ENGINE=MEMORY SELECT * FROM orders;"
+    mysql -uroot -proot -D tpch -e "CREATE TABLE customer_dup ENGINE=MEMORY SELECT * FROM customer;"
+
     echo "creating additional index"
     mysql -uroot -proot -D tpch < additional_indexes.sql
 }
