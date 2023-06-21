@@ -1,4 +1,4 @@
-FROM mysql:8.0.21
+FROM mysql:8.0.33-debian
 
 RUN apt-get update
 RUN apt-get install -y unzip
